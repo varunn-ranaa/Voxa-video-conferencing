@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Video conferencing app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Varun Rana",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.2.1",
+    "http-status": "^2.1.0",
+    "mongoose": "^9.2.4",
+    "nodemon": "^3.1.14",
+    "socket.io": "^4.8.3"
+  }
+}
