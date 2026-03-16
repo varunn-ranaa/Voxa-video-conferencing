@@ -5,6 +5,7 @@ import {createServer} from "http";
 import {connectToServer} from "./controllers/socketManager.js";
 import cors from "cors";
 import "dotenv/config";
+import userRoutes from "./routes/user.routes.js"
 
 const app = express();
 const server = createServer(app);
@@ -16,9 +17,7 @@ app.use(express.json({limit : "40kb"})); //payload maintain
 app.use(express.urlencoded({limit : "40kb" , extended : "true"}));
 
 
-app.get("/home",(req,res)=>{
-    res.json({"Hello" : "World"});
-});
+app.use("/api/v1/user",userRoutes);
 
 const start = async () => { 
 
