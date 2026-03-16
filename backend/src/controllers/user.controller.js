@@ -12,18 +12,22 @@ const login = async(req,res)=>{
     return res.status(400).json({message : 'Provide user cerdentials'});
   }
 
-  const user = await User.findOne({username});
+   try{
+    const user = await User.findOne({username});
 
   if(!user){
-    res.status(httpStatus.NOT_FOUND).json({message : 'User not Found !'});
+    return res.status(httpStatus.NOT_FOUND).json({message : 'User not Found !'});
   }
 
-  if(bcrypt.compare(password, user.password)){
+  if(await bcrypt.compare(password, user.password)){
     let token = crypto.randomBytes(20).toString("hex");
-
     user.token = token;
-    await user.save()
+    await user.save();
     return res.status(httpStatus.OK).json({token : token});
+  }
+  }
+  catch(e){
+      return res.status(500).json({message : 'Something went wrong !'});
   }
 
 }
@@ -31,7 +35,8 @@ const login = async(req,res)=>{
 const register = async(req,res)=>{
    const {name , username , password } = req.body;
 
-   const existingUser = User.findOne({username});
+  try{
+   const existingUser = await User.findOne({username});
    if(existingUser){
        return res.status(httpStatus.FOUND).json({message : 'User Already Exists !'});
    }
@@ -46,8 +51,11 @@ const register = async(req,res)=>{
 
    await newUser.save();
 
-   res.status(httpStatus.CREATED).json({message : 'User Registered !'})
-
+    return res.status(httpStatus.CREATED).json({message : 'User Registered !'})
+  }
+  catch(e){
+    return res.status(500).json({message : 'Something went wrong !'});
+  }
 }
 
 export {login , register};
