@@ -1,0 +1,150 @@
+.landingPageContainer{
+  width: 100vw;
+  height: 100vh;
+  background : url('../public/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.landingPageContainer nav {
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.landingPageContainer nav h2{
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.landingPageContainer nav .navList{
+   display: flex;
+   gap: 1.6rem;
+   cursor: pointer;
+   align-items: center;
+}
+
+.landingMainContainer{
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 2rem;
+  align-items: center;
+  height: 80vh;
+}
+
+.landingMainContainer > div:nth-child(1){
+  font-size: 2rem;
+}
+
+.landingMainContainer > div:nth-child(1) p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 420px;
+}
+
+/* Get Started button */
+.landingMainContainer > div:nth-child(1) div[role='button']{
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 2px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button']:hover {
+  box-shadow: 0 0 40px rgba(175, 158, 255, 0.65);
+  transform: translateY(-2px);
+}
+
+
+.landingMainContainer > div:nth-child(1) div[role='button'] a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.65rem 1.8rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7B5FFF, #8575cd);
+  letter-spacing: 0.3px;
+  transition: background 0.25s ease;
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button']:hover a {
+    box-shadow: 0 0 0 rgba(123, 95, 255, 0.55);
+  background: linear-gradient(135deg, #6a4fff, #7B5FFF);
+}
+
+.landingMainContainer > div:nth-child(2){
+  padding-top: 3rem;
+}
+
+/* Float animation for mobile image */
+.landingMainContainer > div:nth-child(2) img {
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(156, 145, 209, 0.909));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-16px); }
+}
+
+/* VOXA Meet logo styling */
+.landingPageContainer nav h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+ 
+.logoAccent {
+  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+ 
+.logoMeet {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+ 
+/* Login button */
+.loginBtn {
+  padding: 2px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+ 
+.loginBtn:hover {
+  box-shadow: 0 0 22px rgba(123, 95, 255, 0.55);
+  transform: translateY(-1px);
+}
+ 
+.loginBtn p {
+  font-size: 0.875rem !important;
+  font-weight: 600;
+  color: #fff !important;
+  padding: 0.4rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7B5FFF, #8575cd);
+  margin: 0;
+  transition: background 0.25s ease;
+}
+ 
+.loginBtn:hover p {
+  background: linear-gradient(135deg, #6a4fff, #7B5FFF);
+}
+ 
