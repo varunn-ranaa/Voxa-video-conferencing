@@ -1,3 +1,15 @@
+ * { 
+   margin: 0;
+    padding: 0;
+  box-sizing: border-box; 
+}
+
+html, body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
 .landingPageContainer{
   width: 100vw;
   height: 100vh;
@@ -175,6 +187,7 @@
   color: white;
   display: flex;
   flex-direction: column;
+
 }
 .authContainer .landingNav{
   padding-inline: 2rem;
@@ -189,6 +202,20 @@
    gap: 1.6rem;
    cursor: pointer;
    align-items: center; 
+}
+
+/* Auth navbar links */
+.authContainer .landingNav .navList a {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+ 
+.authContainer .landingNav .navList a:hover {
+  color: #fff;
 }
 
 .authMain {
@@ -275,7 +302,7 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 2.4rem;
+  padding: 2rem;
   backdrop-filter: blur(12px);
 }
 
@@ -386,30 +413,6 @@
   white-space: nowrap;
 }
 
-/* Google btn */
-.authGoogleBtn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.authGoogleBtn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Switch */
 .authSwitch {
   text-align: center;
@@ -433,3 +436,126 @@
   margin-bottom: 6px;
   letter-spacing: -0.3px;
 }
+
+/* Auth Toggle Tabs */
+.authTabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 1.4rem;
+  gap: 4px;
+}
+ 
+.authTab {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+ 
+.authTabActive {
+  background: linear-gradient(135deg, #7B5FFF, #8575cd);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(123, 95, 255, 0.35);
+}
+
+/* Auth compact fix — no scroll */
+.authMain {
+  padding: 1rem 4rem;
+  align-items: center;
+}
+ 
+.authCardInner {
+  padding: 1.6rem;
+}
+ 
+.authCardTitle {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+ 
+.authCardSub {
+  margin-bottom: 1rem;
+}
+ 
+.authTabs {
+  margin-bottom: 1rem;
+}
+ 
+.authTab {
+  padding: 0.5rem;
+  font-size: 0.85rem;
+}
+ 
+.authForm {
+  gap: 0.7rem;
+}
+ 
+.inputGroup {
+  gap: 3px;
+}
+ 
+.inputGroup label {
+  font-size: 0.75rem;
+}
+ 
+.authInput {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.88rem;
+}
+ 
+.forgotRow {
+  margin-top: -2px;
+}
+ 
+.authSubmitBtn {
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+ 
+.authDivider {
+  margin: 1rem 0;
+}
+ 
+ 
+.authSwitch {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+}
+ 
+.authLeft {
+  gap: 0;
+}
+ 
+.authTitle {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  margin-bottom: 0.8rem;
+}
+ 
+.authSub {
+  margin-bottom: 1.5rem;
+  font-size: 0.92rem;
+}
+ 
+.authFeatures {
+  gap: 0.6rem;
+}
+ 
+.authFeatureItem {
+  font-size: 0.85rem;
+}
+ 
+.authBadge {
+  margin-bottom: 1.2rem;
+}
+
+
