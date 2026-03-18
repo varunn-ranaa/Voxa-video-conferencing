@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
 
 export default function Authentication() {
+
+  const [username, setUsername] = React.useState();
+  const [password, setpassword] = React.useState();
+  const [name, setname] = React.useState();
+  const [error, seterror] = React.useState();
+  const [messages, setmessages] = React.useState();
+  const [formState, setFormState] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className='authContainer'>
 
@@ -53,36 +62,69 @@ export default function Authentication() {
         <div className='authCard'>
           <div className='authCardInner'>
 
-            <h3 className='authCardTitle'>Sign in to Voxa</h3>
-            <p className='authCardSub'>Enter your credentials to continue</p>
+            <h3 className='authCardTitle'>
+              {formState === 0 ? 'Sign in to Voxa' : 'Create Account'}
+            </h3>
+
+            <div className='authTabs'>
+              <button
+                className={`authTab ${formState === 0 ? 'authTabActive' : ''}`}
+                onClick={() => setFormState(0)}
+              >
+                Sign In
+              </button>
+              <button
+                className={`authTab ${formState === 1 ? 'authTabActive' : ''}`}
+                onClick={() => setFormState(1)}
+              >
+                Sign Up
+              </button>
+            </div>
 
             <form className='authForm' onSubmit={(e) => e.preventDefault()}>
 
+              {formState === 1 && (
+                <div className='inputGroup'>
+                  <label>Full Name</label>
+                  <input type='text' className='authInput'
+                    onChange={(e) => setname(e.target.value)} />
+                </div>
+              )}
+
               <div className='inputGroup'>
-                <label>Email Address</label>
-                <input type='email' placeholder='you@example.com' className='authInput' />
+                <label>Username</label>
+                <input type='text' className='authInput'
+                  onChange={(e) => setUsername(e.target.value)} />
               </div>
 
               <div className='inputGroup'>
                 <label>Password</label>
-                <input type='password' placeholder='••••••••' className='authInput' />
+                <input type='password' className='authInput'
+                  onChange={(e) => setpassword(e.target.value)} />
               </div>
 
-              <div className='forgotRow'>
-                <span className='forgotLink'>Forgot password?</span>
-              </div>
+              {formState === 1 && (
+                <button type='submit' className='authSubmitBtn'>
+                  Sign Up 
+                </button>
+              )}
 
-              <button type='submit' className='authSubmitBtn'>
-                Sign In →
-              </button>
+              {formState === 0 && (
+                <button type='submit' className='authSubmitBtn'>
+                  Sign In 
+                </button>
+              )}
 
+            {formState === 0 && (
+              <>
+                <p className='authSwitch'>
+                  Don't have an account?{' '}
+                  <Link to='/register' className='authSwitchLink'>Register</Link>
+                </p>
+              </>
+            )}
             </form>
 
-            <div className='authDivider'><span>or continue with</span></div>
-            <p className='authSwitch'>
-              Don't have an account?{' '}
-              <Link to='/register' className='authSwitchLink'>Register</Link>
-            </p>
 
           </div>
         </div>
