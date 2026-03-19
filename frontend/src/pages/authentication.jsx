@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/authContext';
+import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
 
 export default function Authentication() {
 
@@ -8,9 +11,47 @@ export default function Authentication() {
   const [password, setpassword] = React.useState();
   const [name, setname] = React.useState();
   const [error, seterror] = React.useState();
-  const [messages, setmessages] = React.useState();
+  const [message, setmessages] = React.useState();
   const [formState, setFormState] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+
+  const { handleRegister, handleLogin } = React.useContext(AuthContext);
+  const router = useNavigate();
+
+  let handleAuth = async () => {
+
+    try {
+      if (formState === 0) {
+        let result = await handleLogin(username, password);
+        router('/');
+
+      }
+      if (formState === 1) {
+
+        let result = await handleRegister(name, username, password);
+        console.log(result);
+        setname("");
+        setUsername("");
+        setpassword("");
+        seterror("");
+        setFormState(0);
+        setmessages(result);
+        setOpen(true);
+
+
+        setTimeout(() => {
+          setFormState(0);
+          setOpen(false);
+        }, 1500);
+
+      }
+    }
+    catch (error) {
+
+      let message = (error.response.data.message);
+      seterror(message);
+    }
+  }
 
   return (
     <div className='authContainer'>
@@ -87,48 +128,56 @@ export default function Authentication() {
                 <div className='inputGroup'>
                   <label>Full Name</label>
                   <input type='text' className='authInput'
-                    onChange={(e) => setname(e.target.value)} />
+                    onChange={(e) => setname(e.target.value)} value={name || ""} />
                 </div>
               )}
 
               <div className='inputGroup'>
                 <label>Username</label>
                 <input type='text' className='authInput'
-                  onChange={(e) => setUsername(e.target.value)} />
+                  onChange={(e) => setUsername(e.target.value)} value={username || ""} />
               </div>
 
               <div className='inputGroup'>
                 <label>Password</label>
                 <input type='password' className='authInput'
-                  onChange={(e) => setpassword(e.target.value)} />
+                  onChange={(e) => setpassword(e.target.value)} value={password || ""} />
               </div>
 
+              <p style={{ color: 'red' }}>{error}</p>
+
               {formState === 1 && (
-                <button type='submit' className='authSubmitBtn'>
-                  Sign Up 
+                <button type='submit' className='authSubmitBtn' onClick={handleAuth}>
+                  Register
                 </button>
               )}
 
               {formState === 0 && (
-                <button type='submit' className='authSubmitBtn'>
-                  Sign In 
+                <button type='submit' className='authSubmitBtn' onClick={handleAuth}>
+                  Login
                 </button>
               )}
 
-            {formState === 0 && (
-              <>
-                <p className='authSwitch'>
-                  Don't have an account?{' '}
-                  <Link to='/register' className='authSwitchLink'>Register</Link>
-                </p>
-              </>
-            )}
+              {formState === 0 && (
+                <>
+                  <p className='authSwitch'>
+                    Don't have an account?{' '}
+                    <Link to='/register' className='authSwitchLink'>Register</Link>
+                  </p>
+                </>
+              )}
             </form>
 
 
           </div>
         </div>
       </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        message={message}
+      />
     </div>
+
   );
 }
