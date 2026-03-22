@@ -3,6 +3,7 @@ import { Server } from "socket.io";
 let connections = {};  //in-Memory db
 let timeOnline = {};
 let messages = {};
+let socketUserMap ={};
 
 export const connectToServer = (server) => {
     const io = new Server(server, {
@@ -14,18 +15,21 @@ export const connectToServer = (server) => {
         }
     });
 
-    io.on("connection", (socket) => {  
+    io.on("connection", (socket) => { 
+        
+        console.log("something connected !");
 
         // 1. new user joins session 
-        socket.on("join-call", (path) => {        
+        socket.on("join-call", (path,username) => {        
             if (connections[path] === undefined) { // create new session if not exists
                 connections[path] = [];
             }
             connections[path].push(socket.id);
+            socketUserMap[socket.id] = username;
             timeOnline[socket.id] = new Date();  
 
             connections[path].forEach(ele => {    // broadcast user join to everyone in room 
-                io.to(ele).emit("User-Joined", socket.id, connections[path]);
+                io.to(ele).emit("user-joined", socket.id, connections[path],socketUserMap);
             });
 
             if (messages[path] !== undefined) {  // send prev chats to new user added 
