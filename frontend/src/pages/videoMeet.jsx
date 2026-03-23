@@ -50,9 +50,9 @@ export default function VideoMeetComponent() {
     let videoAllowed = false;
     let audioAllowed = false;
 
-    // Request video & audio
+    // camera/mic available
     try {
-      const videoStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false }); 
+      const videoStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
       videoAllowed = true;
       videoStream.getTracks().forEach(track => track.stop());
     } catch (err) {
@@ -76,7 +76,7 @@ export default function VideoMeetComponent() {
           video: videoAllowed,
           audio: audioAllowed
         });
-        window.localStream = userMediaStream;
+        window.localStream = userMediaStream; //save globally
         if (localVideoRef.current) {
           localVideoRef.current.srcObject = userMediaStream;
         }
@@ -99,6 +99,18 @@ export default function VideoMeetComponent() {
   useEffect(() => { //get permission while entry
     getPermission();
   }, []);
+
+  useEffect(() => {
+    if (video !== undefined && audio !== undefined) {
+      getUserMedia();
+    }
+  }, [audio, video]);
+
+  useEffect(() => {
+    if (!askForUsername && localVideoRef.current && window.localStream) {
+      localVideoRef.current.srcObject = window.localStream;
+    }
+  }, [askForUsername]);
 
   let getUserMediaSuccess = (stream) => {
     try {
@@ -170,11 +182,7 @@ export default function VideoMeetComponent() {
     }
   };
 
-  useEffect(() => {
-    if (video !== undefined && audio !== undefined) {
-      getUserMedia();
-    }
-  }, [audio, video]);
+
 
   let gotMessageFromServer = (fromId, message) => {
     var signal = JSON.parse(message);
@@ -314,10 +322,34 @@ export default function VideoMeetComponent() {
 
   }
 
+  let handleEndCall = () => {
+    //tracks stop
+    try {
+      let tracks = window.localStream.getTracks();
+      tracks.forEach(track => track.stop());
+    } catch (e) {
+      console.log(e);
+    }
+
+    //peerconnections close
+    for (let id in connections) {
+      connections[id].close();
+    }
+    connections = {};
+
+    socketRef.current.disconnect();
+    setVideos([]);
+    videoRef.current = [];        // YEH ADD KARO
+    setSocketUserMap({});
+    setAskForUsername(true);
+    getPermission();
+
+  }
+
   return (
     <div className="voxa-root">
 
-      {/* ── LOBBY SCREEN ─────────────────────────────────── */}
+      {/* ---LOBBY SCREEN ---*/}
       {askForUsername ? (
         <div className="voxa-lobby">
 
@@ -362,7 +394,7 @@ export default function VideoMeetComponent() {
 
       ) : (
 
-        /* ── MEETING SCREEN ────────────────────────────────── */
+        /* --- MEETING SCREEN --- */
         <div className="voxa-meet">
 
           {/* background orbs (meeting bhi same vibe) */}
@@ -422,7 +454,7 @@ export default function VideoMeetComponent() {
               </Badge>
 
               {/* end call —  red button */}
-              <IconButton className="ctrl-btn ctrl-end">
+              <IconButton className="ctrl-btn ctrl-end" onClick={handleEndCall}>
                 <CallEndIcon />
               </IconButton>
 
