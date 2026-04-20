@@ -12,6 +12,8 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare';
 import IconButton from '@mui/material/IconButton';
 import ChatIcon from '@mui/icons-material/Chat';
+import CloseIcon from '@mui/icons-material/Close';
+import SendIcon from '@mui/icons-material/Send';
 import Badge from '@mui/material/Badge';
 
 const server_url = "http://localhost:8080";
@@ -30,6 +32,7 @@ export default function VideoMeetComponent() {
   let socketIdRef = useRef(); // socket id by server
   let localVideoRef = useRef(); // local video box
   const videoRef = useRef([]); // peer video record
+  const chatMessagesRef = useRef(null); // chat autoscroll container
 
   let [video, setVideo] = useState([]);
   let [audio, setAudio] = useState();
@@ -39,6 +42,7 @@ export default function VideoMeetComponent() {
   let [messages, setMessages] = useState([]);
   let [message, setMessage] = useState("");
   let [newMessages, setNewMessages] = useState(0);
+  let [showChat, setShowChat] = useState(false);
   let [askForUsername, setAskForUsername] = useState(true);
   let [username, setUsername] = useState("");
   let [videos, setVideos] = useState([]);
@@ -116,6 +120,12 @@ export default function VideoMeetComponent() {
       localVideoRef.current.srcObject = window.localStream;
     }
   }, [askForUsername]);
+
+  useEffect(() => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   let getUserMediaSuccess = (stream) => {
     try {
@@ -219,6 +229,17 @@ export default function VideoMeetComponent() {
     if (socketIdSender !== socketIdRef.current) {
       setNewMessages(prev => prev + 1);
     }
+  };
+
+  let sendMessage = () => {
+    if (!message.trim()) return;
+    socketRef.current.emit('chat-message', message, username);
+    setMessage('');
+  };
+
+  let handleChatToggle = () => {
+    setShowChat(prev => !prev);
+    setNewMessages(0);
   };
 
   let connectToSocketServer = () => {
@@ -464,7 +485,7 @@ export default function VideoMeetComponent() {
           <div className="orb orb-2" />
 
           {/* ── conference grid ── */}
-          <div className="conference-grid">
+          <div className={`conference-grid${showChat ? ' chat-open' : ''}`}>
             {videos.length === 0 ? (
               <div className="waiting-pill">
                 <span className="waiting-dot" />
@@ -483,6 +504,47 @@ export default function VideoMeetComponent() {
                 </div>
               ))
             )}
+          </div>
+
+          {/* ── chat panel ── */}
+          <div className={`chat-panel${showChat ? ' chat-panel--open' : ''}`}>
+            <div className="chat-header">
+              <span className="chat-title">In-call Chat</span>
+              <IconButton className="chat-close-btn" onClick={handleChatToggle}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </div>
+
+            <div className="chat-messages" ref={chatMessagesRef}>
+              {messages.length === 0 ? (
+                <p className="chat-empty">No messages yet. Say hi! 👋</p>
+              ) : (
+                messages.map((msg, idx) => {
+                  const isMe = msg.sender === username;
+                  return (
+                    <div key={idx} className={`chat-bubble-wrap ${isMe ? 'me' : 'them'}`}>
+                      <span className="chat-sender">{isMe ? 'You' : msg.sender}</span>
+                      <div className={`chat-bubble ${isMe ? 'bubble-me' : 'bubble-them'}`}>
+                        {msg.data}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            <div className="chat-input-row">
+              <input
+                className="chat-input"
+                placeholder="Type a message…"
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && sendMessage()}
+              />
+              <IconButton className="chat-send-btn" onClick={sendMessage} disabled={!message.trim()}>
+                <SendIcon fontSize="small" />
+              </IconButton>
+            </div>
           </div>
 
           {/* ── local pip ── */}
@@ -510,7 +572,10 @@ export default function VideoMeetComponent() {
               )}
 
               <Badge badgeContent={newMessages} max={999} color="secondary">
-                <IconButton className="ctrl-btn">
+                <IconButton
+                  className={`ctrl-btn${showChat ? ' ctrl-btn--active' : ''}`}
+                  onClick={handleChatToggle}
+                >
                   <ChatIcon />
                 </IconButton>
               </Badge>
