@@ -76,7 +76,7 @@ export default function Authentication() {
             <span className='badgeDot'></span>
             Secure · Encrypted · Instant
           </div>
-          <h1 className='authTitle'>
+          <h1 className='authTitle'>c
             Welcome<br /><span className='heroAccent'>back.</span>
           </h1>
           <p className='authSub'>
