@@ -1,0 +1,286 @@
+/* ===== HOME / DASHBOARD PAGE ===== */
+
+.homeContainer {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../../public/background.png') no-repeat center center / cover;
+    background-color: #050810;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ── NAV ── */
+.homeNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    background: rgba(5, 8, 16, 0.4);
+    flex-shrink: 0;
+}
+
+.homeNavLogo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.homeNavRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.homeLogoutBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.55);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.homeLogoutBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* ── MAIN LAYOUT ── */
+.homeMain {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 5rem;
+    gap: 3rem;
+    overflow: hidden;
+}
+
+/* ── LEFT PANEL ── */
+.homeLeft {
+    flex: 1;
+    max-width: 520px;
+    animation: fadeUp 0.65s ease both;
+}
+
+.homeBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(123, 95, 255, 0.1);
+    border: 1px solid rgba(123, 95, 255, 0.25);
+    color: #cea0ff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 1.4rem;
+}
+
+.badgeDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #7B5FFF;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.homeTitle {
+    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.homeAccent {
+    background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.homeSub {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.7;
+    max-width: 400px;
+}
+
+/* ── MEET CARD (right side) ── */
+.meetCard {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    width: 440px;
+    flex-shrink: 0;
+    animation: fadeUp 0.65s ease 0.15s both;
+}
+
+/* ── TABS ── */
+.meetTabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 3px;
+    margin-bottom: 1.4rem;
+}
+
+.meetTab {
+    flex: 1;
+    padding: 0.55rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.meetTabActive {
+    background: linear-gradient(135deg, #7B5FFF, #8575cd);
+    color: #fff;
+    box-shadow: 0 0 14px rgba(123, 95, 255, 0.3);
+}
+
+/* ── JOIN ── */
+.meetCardLabel {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.3px;
+}
+
+.meetInputRow {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.meetInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.meetInput::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.meetInput:focus {
+    border-color: rgba(123, 95, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(123, 95, 255, 0.1);
+}
+
+/* ── BUTTONS ── */
+.meetPrimaryBtn {
+    padding: 0.7rem 1.3rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meetPrimaryBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(123, 95, 255, 0.5);
+}
+
+/* ── CREATE ── */
+.meetCreate {
+    display: flex;
+    flex-direction: column;
+}
+
+.meetCreateSub {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1.1rem;
+    line-height: 1.5;
+}
+
+.meetCreateBtn {
+    width: fit-content;
+}
+
+.meetBtnIcon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* ── LOGO SHARED ── */
+.logoAccent {
+    background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logoMeet {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+    }
+}
