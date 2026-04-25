@@ -1,4 +1,5 @@
 import {User} from '../models/user.model.js';
+import {Meeting} from '../models/meeting.model.js';
 import httpStatus from 'http-status';
 import bcrypt, {hash} from 'bcrypt';
 import crypto from "crypto";
@@ -61,4 +62,39 @@ const register = async(req,res)=>{
   }
 }
 
-export {login , register};
+const addToActivity = async (req, res) => {
+  const { token, meetingCode } = req.body;
+  if (!token || !meetingCode) {
+    return res.status(400).json({ message: 'Token and meeting code are required' });
+  }
+  try {
+    const user = await User.findOne({ token });
+    if (!user) {
+      return res.status(httpStatus.UNAUTHORIZED).json({ message: 'Invalid token' });
+    }
+    const meeting = new Meeting({ uid: user._id, meetingCode });
+    await meeting.save();
+    return res.status(httpStatus.CREATED).json({ message: 'Activity recorded' });
+  } catch (e) {
+    return res.status(500).json({ message: 'Something went wrong!' });
+  }
+};
+
+const getAllActivity = async (req, res) => {
+  const { token } = req.query;
+  if (!token) {
+    return res.status(400).json({ message: 'Token is required' });
+  }
+  try {
+    const user = await User.findOne({ token });
+    if (!user) {
+      return res.status(httpStatus.UNAUTHORIZED).json({ message: 'Invalid token' });
+    }
+    const meetings = await Meeting.find({ uid: user._id }).sort({ date: -1 });
+    return res.status(httpStatus.OK).json({ meetings, username: user.username, name: user.name });
+  } catch (e) {
+    return res.status(500).json({ message: 'Something went wrong!' });
+  }
+};
+
+export {login , register , addToActivity , getAllActivity};
