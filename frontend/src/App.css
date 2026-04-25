@@ -1,561 +1,575 @@
- * { 
+ * {
    margin: 0;
-    padding: 0;
-  box-sizing: border-box; 
-}
+   padding: 0;
+   box-sizing: border-box;
+ }
 
-html, body {
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-}
+ html,
+ body {
+   overflow: hidden;
+   width: 100vw;
+   height: 100vh;
+ }
 
-.landingPageContainer{
-  width: 100vw;
-  height: 100vh;
-  background : url('../public/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-}
+ .landingPageContainer {
+   width: 100vw;
+   height: 100vh;
+   background: url('../public/background.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+   color: white;
+ }
 
-.landingPageContainer nav {
-  padding-inline: 2rem;
-  padding-block: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+ .landingPageContainer nav {
+   padding-inline: 2rem;
+   padding-block: 1rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
 
-.landingPageContainer nav h2{
-  font-size: 1.6rem;
-  font-weight: 500;
-}
+ .landingPageContainer nav h2 {
+   font-size: 1.6rem;
+   font-weight: 500;
+ }
 
-.landingPageContainer nav .navList{
+ .landingPageContainer nav .navList {
    display: flex;
    gap: 1.6rem;
    cursor: pointer;
    align-items: center;
-}
+ }
 
-.landingMainContainer{
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 2rem;
-  align-items: center;
-  height: 80vh;
-}
- .landingMainContainer .landBadge{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(123, 95, 255, 0.1);
-  border: 1px solid rgba(123, 95, 255, 0.25);
-  color: #cea0ff;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 100px;
-  margin-bottom: 1.8rem;
-}
+ .landingMainContainer {
+   display: flex;
+   justify-content: space-between;
+   padding-inline: 2rem;
+   align-items: center;
+   height: 80vh;
+ }
 
-.landingMainContainer .left{
-  font-size: 2rem;
-}
+ .landingMainContainer .landBadge {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   background: rgba(123, 95, 255, 0.1);
+   border: 1px solid rgba(123, 95, 255, 0.25);
+   color: #cea0ff;
+   font-size: 0.7rem;
+   font-weight: 600;
+   letter-spacing: 1.5px;
+   text-transform: uppercase;
+   padding: 6px 14px;
+   border-radius: 100px;
+   margin-bottom: 1.8rem;
+ }
 
-.landingMainContainer .left p {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.6;
-  margin-top: 0.6rem;
-  font-weight: 400;
-  max-width: 420px;
-}
+ .landingMainContainer .left {
+   font-size: 2rem;
+ }
 
-/* Get Started button */
-.landingMainContainer .left div[role='button']{
-  width: fit-content;
-  margin-top: 1rem;
-  padding: 2px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-  box-shadow: 0 0 24px rgba(123, 95, 255, 0.4);
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
+ .landingMainContainer .left p {
+   font-size: 0.95rem;
+   color: rgba(255, 255, 255, 0.5);
+   line-height: 1.6;
+   margin-top: 0.6rem;
+   font-weight: 400;
+   max-width: 420px;
+ }
 
-.landingMainContainer .left div[role='button']:hover {
-  box-shadow: 0 0 40px rgba(123, 95, 255, 0.65);
-  transform: translateY(-2px);
-}
+ /* Get Started button */
+ .landingMainContainer .left div[role='button'] {
+   width: fit-content;
+   margin-top: 1rem;
+   padding: 2px;
+   border-radius: 14px;
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+   box-shadow: 0 0 24px rgba(123, 95, 255, 0.4);
+   cursor: pointer;
+   transition: all 0.25s ease;
+ }
 
-.landingMainContainer .left div[role='button'] a {
-  display: block;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.65rem 1.8rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-  letter-spacing: 0.3px;
-  transition: background 0.25s ease;
-}
+ .landingMainContainer .left div[role='button']:hover {
+   box-shadow: 0 0 40px rgba(123, 95, 255, 0.65);
+   transform: translateY(-2px);
+ }
 
-.landingMainContainer .left div[role='button']:hover a {
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-}
+ .landingMainContainer .left div[role='button'] a {
+   display: block;
+   text-decoration: none;
+   color: #fff;
+   font-size: 1rem;
+   font-weight: 700;
+   padding: 0.65rem 1.8rem;
+   border-radius: 12px;
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+   letter-spacing: 0.3px;
+   transition: background 0.25s ease;
+ }
 
-.landingMainContainer .right{
-  padding-top: 3rem;
-}
+ .landingMainContainer .left div[role='button']:hover a {
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+ }
 
-/* Float animation for mobile image */
-.landingMainContainer .right img {
-  animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 20px 40px rgba(123, 95, 255, 0.2));
-}
+ .landingMainContainer .right {
+   padding-top: 3rem;
+ }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-16px); }
-}
+ /* Float animation for mobile image */
+ .landingMainContainer .right img {
+   animation: float 4s ease-in-out infinite;
+   filter: drop-shadow(0 20px 40px rgba(123, 95, 255, 0.2));
+ }
 
-/* VOXA Meet logo styling */
-.landingPageContainer nav h2 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
+ @keyframes float {
 
-.logoAccent {
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+   0%,
+   100% {
+     transform: translateY(0px);
+   }
 
-.logoMeet {
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+   50% {
+     transform: translateY(-16px);
+   }
+ }
 
-/* Login button */
-.loginBtn {
-  padding: 2px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
+ /* VOXA Meet logo styling */
+ .landingPageContainer nav h2 {
+   font-size: 1.6rem;
+   font-weight: 800;
+   letter-spacing: -0.5px;
+ }
 
-.loginBtn:hover {
-  box-shadow: 0 0 22px rgba(123, 95, 255, 0.55);
-  transform: translateY(-1px);
-}
+ .logoAccent {
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+ }
 
-.loginBtn p {
-  font-size: 0.875rem !important;
-  font-weight: 600;
-  color: #fff !important;
-  padding: 0.4rem 1.2rem;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #7B5FFF, #8575cd);
-  margin: 0;
-  transition: background 0.25s ease;
-}
+ .logoMeet {
+   font-size: 1rem;
+   font-weight: 400;
+   color: rgba(255, 255, 255, 0.35);
+   letter-spacing: 1px;
+   text-transform: uppercase;
+ }
 
-.loginBtn:hover p {
-  background: linear-gradient(135deg, #6a4fff, #7B5FFF);
-}
+ /* Login button */
+ .loginBtn {
+   padding: 2px;
+   border-radius: 10px;
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+   cursor: pointer;
+   transition: all 0.25s ease;
+ }
+
+ .loginBtn:hover {
+   box-shadow: 0 0 22px rgba(123, 95, 255, 0.55);
+   transform: translateY(-1px);
+ }
+
+ .loginBtn p {
+   font-size: 0.875rem !important;
+   font-weight: 600;
+   color: #fff !important;
+   padding: 0.4rem 1.2rem;
+   border-radius: 8px;
+   background: linear-gradient(135deg, #7B5FFF, #8575cd);
+   margin: 0;
+   transition: background 0.25s ease;
+ }
+
+ .loginBtn:hover p {
+   background: linear-gradient(135deg, #6a4fff, #7B5FFF);
+ }
 
 
-/* ===== AUTHENTICATION PAGE ===== */
-.authContainer {
-  width: 100vw;
-  min-height: 100vh;
-  background: url('../public/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #050810;
-  color: white;
-  display: flex;
-  flex-direction: column;
+ /* ===== AUTHENTICATION PAGE ===== */
+ .authContainer {
+   width: 100vw;
+   min-height: 100vh;
+   background: url('../public/background.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: #050810;
+   color: white;
+   display: flex;
+   flex-direction: column;
 
-}
-.authContainer .landingNav{
-  padding-inline: 2rem;
-  padding-block: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+ }
 
-.authContainer .landingNav .navList{
+ .authContainer .landingNav {
+   padding-inline: 2rem;
+   padding-block: 1rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .authContainer .landingNav .navList {
    display: flex;
    gap: 1.6rem;
    cursor: pointer;
-   align-items: center; 
-}
+   align-items: center;
+ }
 
-/* Auth navbar links */
-.authContainer .landingNav .navList a {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  transition: color 0.2s;
-}
- 
-.authContainer .landingNav .navList a:hover {
-  color: #fff;
-}
+ /* Auth navbar links */
+ .authContainer .landingNav .navList a {
+   font-size: 0.875rem;
+   color: rgba(255, 255, 255, 0.5);
+   text-decoration: none;
+   font-weight: 500;
+   letter-spacing: 0.3px;
+   transition: color 0.2s;
+ }
 
-.authMain {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 5rem;
-  gap: 3rem;
-  min-height: calc(100vh - 73px);
-}
+ .authContainer .landingNav .navList a:hover {
+   color: #fff;
+ }
 
-/* LEFT */
-.authLeft {
-  flex: 1;
-  max-width: 480px;
-  animation: fadeUp 0.7s ease both;
-}
+ .authMain {
+   flex: 1;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-inline: 5rem;
+   gap: 3rem;
+   min-height: calc(100vh - 73px);
+ }
 
-.authBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(123, 95, 255, 0.1);
-  border: 1px solid rgba(123, 95, 255, 0.25);
-  color: #cea0ff;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 100px;
-  margin-bottom: 1.8rem;
-}
+ /* LEFT */
+ .authLeft {
+   flex: 1;
+   max-width: 480px;
+   animation: fadeUp 0.7s ease both;
+ }
 
-.authTitle {
-  font-size: clamp(3rem, 5.5vw, 5rem);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -2px;
-  color: #fff;
-  margin-bottom: 1.2rem;
-}
+ .authBadge {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   background: rgba(123, 95, 255, 0.1);
+   border: 1px solid rgba(123, 95, 255, 0.25);
+   color: #cea0ff;
+   font-size: 0.7rem;
+   font-weight: 600;
+   letter-spacing: 1.5px;
+   text-transform: uppercase;
+   padding: 6px 14px;
+   border-radius: 100px;
+   margin-bottom: 1.8rem;
+ }
 
-.authSub {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.7;
-  max-width: 380px;
-  margin-bottom: 2.5rem;
-}
+ .authTitle {
+   font-size: clamp(3rem, 5.5vw, 5rem);
+   font-weight: 800;
+   line-height: 1.0;
+   letter-spacing: -2px;
+   color: #fff;
+   margin-bottom: 1.2rem;
+ }
 
-.authFeatures {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
+ .authSub {
+   font-size: 1rem;
+   color: rgba(255, 255, 255, 0.45);
+   line-height: 1.7;
+   max-width: 380px;
+   margin-bottom: 2.5rem;
+ }
 
-.authFeatureItem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 400;
-}
+ .authFeatures {
+   display: flex;
+   flex-direction: column;
+   gap: 0.9rem;
+ }
 
-.featureDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-  flex-shrink: 0;
-}
+ .authFeatureItem {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-size: 0.9rem;
+   color: rgba(255, 255, 255, 0.6);
+   font-weight: 400;
+ }
 
-/* RIGHT — card */
-.authCard {
-  flex-shrink: 0;
-  width: 420px;
-  animation: fadeUp 0.7s ease 0.15s both;
-}
+ .featureDot {
+   width: 7px;
+   height: 7px;
+   border-radius: 50%;
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+   flex-shrink: 0;
+ }
 
-.authCardInner {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 2rem;
-  backdrop-filter: blur(12px);
-}
+ /* RIGHT — card */
+ .authCard {
+   flex-shrink: 0;
+   width: 420px;
+   animation: fadeUp 0.7s ease 0.15s both;
+ }
 
-
-
-.authCardSub {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin-bottom: 1.6rem;
-  letter-spacing: 0.3px;
-}
-
-/* Form */
-.authForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.inputGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.inputGroup label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.55);
-  letter-spacing: 0.3px;
-}
-
-.authInput {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  color: #fff;
-  font-size: 0.95rem;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.authInput::placeholder {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-.authInput:focus {
-  border-color: rgba(123, 95, 255, 0.6);
-  box-shadow: 0 0 0 3px rgba(123, 95, 255, 0.12);
-}
-
-.forgotRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -4px;
-}
-
-.forgotLink {
-  font-size: 0.8rem;
-  color: #cea0ff;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.forgotLink:hover { color: #7B5FFF; }
-
-.authSubmitBtn {
-  width: 100%;
-  padding: 0.85rem;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #7B5FFF, #cea0ff);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  font-family: inherit;
-  letter-spacing: 0.3px;
-  margin-top: 0.4rem;
-}
-
-.authSubmitBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(123, 95, 255, 0.5);
-}
-
-/* Divider */
-.authDivider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 1.4rem 0;
-}
-
-.authDivider::before,
-.authDivider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.authDivider span {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
-  white-space: nowrap;
-}
-
-/* Switch */
-.authSwitch {
-  text-align: center;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin-top: 1.2rem;
-}
-
-.authSwitchLink {
-  color: #cea0ff;
-  cursor: pointer;
-  font-weight: 600;
-  transition: color 0.2s;
-}
-.authSwitchLink:hover { color: #7B5FFF; }
-
-.authCardTitle {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 6px;
-  letter-spacing: -0.3px;
-}
-
-/* Auth Toggle Tabs */
-.authTabs {
-  display: flex;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 4px;
-  margin-bottom: 1.4rem;
-  gap: 4px;
-}
- 
-.authTab {
-  flex: 1;
-  padding: 0.6rem;
-  border: none;
-  border-radius: 9px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
- 
-.authTabActive {
-  background: linear-gradient(135deg, #7B5FFF, #8575cd);
-  color: #fff;
-  box-shadow: 0 0 16px rgba(123, 95, 255, 0.35);
-}
-
-/* Auth compact fix — no scroll */
-.authMain {
-  padding: 1rem 4rem;
-  align-items: center;
-}
- 
-.authCardInner {
-  padding: 1.6rem;
-}
- 
-.authCardTitle {
-  font-size: 1.2rem;
-  margin-bottom: 4px;
-}
- 
-.authCardSub {
-  margin-bottom: 1rem;
-}
- 
-.authTabs {
-  margin-bottom: 1rem;
-}
- 
-.authTab {
-  padding: 0.5rem;
-  font-size: 0.85rem;
-}
- 
-.authForm {
-  gap: 0.7rem;
-}
- 
-.inputGroup {
-  gap: 3px;
-}
- 
-.inputGroup label {
-  font-size: 0.75rem;
-}
- 
-.authInput {
-  padding: 0.55rem 0.9rem;
-  font-size: 0.88rem;
-}
- 
-.forgotRow {
-  margin-top: -2px;
-}
- 
-.authSubmitBtn {
-  padding: 0.75rem;
-  font-size: 0.95rem;
-  margin-top: 0.2rem;
-}
- 
-.authDivider {
-  margin: 1rem 0;
-}
- 
- 
-.authSwitch {
-  margin-top: 0.9rem;
-  font-size: 0.8rem;
-}
- 
-.authLeft {
-  gap: 0;
-}
- 
-.authTitle {
-  font-size: clamp(2.4rem, 4vw, 3.8rem);
-  margin-bottom: 0.8rem;
-}
- 
-.authSub {
-  margin-bottom: 1.5rem;
-  font-size: 0.92rem;
-}
- 
-.authFeatures {
-  gap: 0.6rem;
-}
- 
-.authFeatureItem {
-  font-size: 0.85rem;
-}
- 
-.authBadge {
-  margin-bottom: 1.2rem;
-}
+ .authCardInner {
+   background: rgba(255, 255, 255, 0.04);
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   border-radius: 24px;
+   padding: 2rem;
+   backdrop-filter: blur(12px);
+ }
 
 
+
+ .authCardSub {
+   font-size: 0.82rem;
+   color: rgba(255, 255, 255, 0.35);
+   margin-bottom: 1.6rem;
+   letter-spacing: 0.3px;
+ }
+
+ /* Form */
+ .authForm {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+
+ .inputGroup {
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+ }
+
+ .inputGroup label {
+   font-size: 0.8rem;
+   font-weight: 500;
+   color: rgba(255, 255, 255, 0.55);
+   letter-spacing: 0.3px;
+ }
+
+ .authInput {
+   background: rgba(255, 255, 255, 0.05);
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   border-radius: 10px;
+   padding: 0.75rem 1rem;
+   color: #fff;
+   font-size: 0.95rem;
+   font-family: inherit;
+   outline: none;
+   transition: border-color 0.2s, box-shadow 0.2s;
+ }
+
+ .authInput::placeholder {
+   color: rgba(255, 255, 255, 0.2);
+ }
+
+ .authInput:focus {
+   border-color: rgba(123, 95, 255, 0.6);
+   box-shadow: 0 0 0 3px rgba(123, 95, 255, 0.12);
+ }
+
+ .forgotRow {
+   display: flex;
+   justify-content: flex-end;
+   margin-top: -4px;
+ }
+
+ .forgotLink {
+   font-size: 0.8rem;
+   color: #cea0ff;
+   cursor: pointer;
+   transition: color 0.2s;
+ }
+
+ .forgotLink:hover {
+   color: #7B5FFF;
+ }
+
+ .authSubmitBtn {
+   width: 100%;
+   padding: 0.85rem;
+   border: none;
+   border-radius: 12px;
+   background: linear-gradient(135deg, #7B5FFF, #cea0ff);
+   color: #fff;
+   font-size: 1rem;
+   font-weight: 700;
+   cursor: pointer;
+   transition: all 0.25s ease;
+   font-family: inherit;
+   letter-spacing: 0.3px;
+   margin-top: 0.4rem;
+ }
+
+ .authSubmitBtn:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 0 28px rgba(123, 95, 255, 0.5);
+ }
+
+ /* Divider */
+ .authDivider {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin: 1.4rem 0;
+ }
+
+ .authDivider::before,
+ .authDivider::after {
+   content: '';
+   flex: 1;
+   height: 1px;
+   background: rgba(255, 255, 255, 0.08);
+ }
+
+ .authDivider span {
+   font-size: 0.75rem;
+   color: rgba(255, 255, 255, 0.3);
+   white-space: nowrap;
+ }
+
+ /* Switch */
+ .authSwitch {
+   text-align: center;
+   font-size: 0.82rem;
+   color: rgba(255, 255, 255, 0.35);
+   margin-top: 1.2rem;
+ }
+
+ .authSwitchLink {
+   color: #cea0ff;
+   cursor: pointer;
+   font-weight: 600;
+   transition: color 0.2s;
+ }
+
+ .authSwitchLink:hover {
+   color: #7B5FFF;
+ }
+
+ .authCardTitle {
+   font-size: 1.3rem;
+   font-weight: 700;
+   color: #fff;
+   margin-bottom: 6px;
+   letter-spacing: -0.3px;
+ }
+
+ /* Auth Toggle Tabs */
+ .authTabs {
+   display: flex;
+   background: rgba(255, 255, 255, 0.05);
+   border-radius: 12px;
+   padding: 4px;
+   margin-bottom: 1.4rem;
+   gap: 4px;
+ }
+
+ .authTab {
+   flex: 1;
+   padding: 0.6rem;
+   border: none;
+   border-radius: 9px;
+   background: transparent;
+   color: rgba(255, 255, 255, 0.4);
+   font-size: 0.9rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   font-family: inherit;
+ }
+
+ .authTabActive {
+   background: linear-gradient(135deg, #7B5FFF, #8575cd);
+   color: #fff;
+   box-shadow: 0 0 16px rgba(123, 95, 255, 0.35);
+ }
+
+ /* Auth compact fix — no scroll */
+ .authMain {
+   padding: 1rem 4rem;
+   align-items: center;
+ }
+
+ .authCardInner {
+   padding: 1.6rem;
+ }
+
+ .authCardTitle {
+   font-size: 1.2rem;
+   margin-bottom: 4px;
+ }
+
+ .authCardSub {
+   margin-bottom: 1rem;
+ }
+
+ .authTabs {
+   margin-bottom: 1rem;
+ }
+
+ .authTab {
+   padding: 0.5rem;
+   font-size: 0.85rem;
+ }
+
+ .authForm {
+   gap: 0.7rem;
+ }
+
+ .inputGroup {
+   gap: 3px;
+ }
+
+ .inputGroup label {
+   font-size: 0.75rem;
+ }
+
+ .authInput {
+   padding: 0.55rem 0.9rem;
+   font-size: 0.88rem;
+ }
+
+ .forgotRow {
+   margin-top: -2px;
+ }
+
+ .authSubmitBtn {
+   padding: 0.75rem;
+   font-size: 0.95rem;
+   margin-top: 0.2rem;
+ }
+
+ .authDivider {
+   margin: 1rem 0;
+ }
+
+
+ .authSwitch {
+   margin-top: 0.9rem;
+   font-size: 0.8rem;
+ }
+
+ .authLeft {
+   gap: 0;
+ }
+
+ .authTitle {
+   font-size: clamp(2.4rem, 4vw, 3.8rem);
+   margin-bottom: 0.8rem;
+ }
+
+ .authSub {
+   margin-bottom: 1.5rem;
+   font-size: 0.92rem;
+ }
+
+ .authFeatures {
+   gap: 0.6rem;
+ }
+
+ .authFeatureItem {
+   font-size: 0.85rem;
+ }
+
+ .authBadge {
+   margin-bottom: 1.2rem;
+ }

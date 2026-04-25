@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import withAuth from '../utils/withAuth';
+import { AuthContext } from '../contexts/authContext';
 import '../styles/home.css';
 
 function HomeComponent() {
     const navigate = useNavigate();
+    const { addToActivity, getHistory } = useContext(AuthContext);
     const [meetingCode, setMeetingCode] = useState('');
     const [activeTab, setActiveTab] = useState('join'); // 'join' | 'create'
+    const [username, setUsername] = useState('');
 
-    const handleJoinMeeting = () => {
+    useEffect(() => {
+        getHistory().then(data => {
+            if (data?.username) setUsername(data.username);
+        }).catch(() => { });
+    }, []);
+
+    const handleJoinMeeting = async () => {
         if (meetingCode.trim() === '') {
             alert('Please enter a meeting code');
             return;
         }
-        navigate(`/${meetingCode.trim()}`);
+        const code = meetingCode.trim();
+        await addToActivity(code);
+        navigate(`/${code}`);
     };
 
-    const handleCreateMeeting = () => {
+    const handleCreateMeeting = async () => {
         const code = Math.random().toString(36).substring(2, 10);
+        await addToActivity(code);
         navigate(`/${code}`);
     };
 
@@ -35,7 +47,9 @@ function HomeComponent() {
                     <span className="logoMeet">Meet</span>
                 </div>
                 <div className="homeNavRight">
-
+                    <Link to="/history" className="homeHistoryBtn">
+                        History
+                    </Link>
                     <button className="homeLogoutBtn" onClick={handleLogout}>
                         Sign out
                     </button>
@@ -43,11 +57,11 @@ function HomeComponent() {
             </nav>
 
             <main className="homeMain">
-                {/* LEFT — sirf text */}
+                {/* LEFT — */}
                 <section className="homeLeft">
                     <div className="homeBadge">
                         <span className="badgeDot"></span>
-                        Your dashboard
+                        {username ? `Welcome, ${username}` : 'Your dashboard'}
                     </div>
                     <h1 className="homeTitle">
                         Start or join<br />

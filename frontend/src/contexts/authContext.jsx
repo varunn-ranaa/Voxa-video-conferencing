@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
             });
             if (req.status === HttpStatusCode.Ok) {
                 localStorage.setItem("token", req.data.token);
-                router('/');
+                router('/home');
             }
         }
         catch (e) {
@@ -49,11 +49,29 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const getHistory = async () => {
+        const token = localStorage.getItem('token');
+        const res = await client.get('/get_all_activity', { params: { token } });
+        return res.data;
+    };
+
+    const addToActivity = async (meetingCode) => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        try {
+            await client.post('/add_to_activity', { token, meetingCode });
+        } catch (e) {
+            // silently fail — activity logging is non-critical
+        }
+    };
+
     const data = {
         userData,
         setUserData,
         handleRegister,
-        handleLogin
+        handleLogin,
+        getHistory,
+        addToActivity
     }
 
     return (

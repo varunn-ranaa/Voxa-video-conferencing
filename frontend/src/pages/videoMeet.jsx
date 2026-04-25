@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import io from "socket.io-client";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -28,6 +29,9 @@ var peerConfigconnections = { // stun server
 
 export default function VideoMeetComponent() {
 
+  const navigate = useNavigate();
+  const { url } = useParams();
+  const isGuestLobby = url === 'guest'; // true when navigated from "Join as Guest"
   var socketRef = useRef(); // socket.io connection
   let socketIdRef = useRef(); // socket id by server
   let localVideoRef = useRef(); // local video box
@@ -45,6 +49,7 @@ export default function VideoMeetComponent() {
   let [showChat, setShowChat] = useState(false);
   let [askForUsername, setAskForUsername] = useState(true);
   let [username, setUsername] = useState("");
+  let [meetCode, setMeetCode] = useState(""); // guest only — meeting code input
   let [videos, setVideos] = useState([]);
   let [socketUserMap, setSocketUserMap] = useState({});
   let [videoAvailable, setVideoAvailable] = useState(true);
@@ -103,10 +108,36 @@ export default function VideoMeetComponent() {
         localVideoRef.current.srcObject = window.localStream;
       }
     }
+    return { videoAllowed, audioAllowed }; // return so callers can use without waiting for state update
   };
 
-  useEffect(() => { //get permission while entry
-    getPermission();
+  useEffect(() => {
+    const init = async () => {
+      const storedName = sessionStorage.getItem('guestName');
+      const isGuestArrival = !!(storedName && !isGuestLobby);
+
+      if (isGuestArrival) {
+        sessionStorage.removeItem('guestName');
+        setUsername(storedName);
+      }
+
+      const { videoAllowed, audioAllowed } = await getPermission();
+
+      // Guest arrived from /guest flow — skip second lobby, join directly
+      if (isGuestArrival) {
+        setAskForUsername(false);
+        setVideo(videoAllowed);
+        setAudio(audioAllowed);
+        connectToSocketServer();
+        // Re-attach stream to PiP after React re-renders the meeting screen
+        setTimeout(() => {
+          if (localVideoRef.current && window.localStream) {
+            localVideoRef.current.srcObject = window.localStream;
+          }
+        }, 100);
+      }
+    };
+    init();
   }, []);
 
   useEffect(() => {
@@ -332,6 +363,14 @@ export default function VideoMeetComponent() {
   };
 
   let connect = () => {
+    // Guest mode: validate code + name, store name and navigate to real meeting
+    if (isGuestLobby) {
+      if (!username.trim()) { alert('Please enter your name'); return; }
+      if (!meetCode.trim()) { alert('Please enter a meeting code'); return; }
+      sessionStorage.setItem('guestName', username.trim());
+      navigate(`/${meetCode.trim()}`);
+      return;
+    }
     setAskForUsername(false);
     getMedia();
   };
@@ -462,15 +501,33 @@ export default function VideoMeetComponent() {
               placeholder="Your name…"
               value={username}
               onChange={e => setUsername(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && username && connect()}
+              onKeyDown={e => e.key === 'Enter' && username && !isGuestLobby && connect()}
             />
+
+            {/* Meeting code — only shown for guests */}
+            {isGuestLobby && (
+              <input
+                className="lobby-input"
+                placeholder="Meeting code…"
+                value={meetCode}
+                onChange={e => setMeetCode(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && username && meetCode && connect()}
+              />
+            )}
 
             <button
               className="lobby-btn"
               onClick={connect}
-              disabled={!username}
+              disabled={isGuestLobby ? !username || !meetCode : !username}
             >
-              Join Now
+              {isGuestLobby ? 'Join Meeting' : 'Join Now'}
+            </button>
+
+            <button
+              className="lobby-back-btn"
+              onClick={() => navigate('/home')}
+            >
+              Back to Home
             </button>
           </div>
         </div>

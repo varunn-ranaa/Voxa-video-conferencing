@@ -10,11 +10,13 @@ export default function landing() {
           <h2>VO<span className='logoAccent'>X</span>A <span className='logoMeet'>Meet</span></h2>
         </div>
         <div className='navList'>
-          <p>Join as Guest</p>
-          <p>Register</p>
-          <div className='loginBtn' role='button'>
-            <p>Login</p>
-          </div>
+          <Link to='/guest' style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }}>Join as Guest</Link>
+          <Link to='/auth?mode=register' style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }}>Register</Link>
+          <Link to='/auth' style={{ textDecoration: 'none' }}>
+            <div className='loginBtn' role='button'>
+              <p>Login</p>
+            </div>
+          </Link>
         </div>
       </nav>
 

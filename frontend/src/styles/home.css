@@ -54,6 +54,29 @@
     color: #fff;
 }
 
+.homeHistoryBtn {
+    background: rgba(123, 95, 255, 0.1);
+    border: 1px solid rgba(123, 95, 255, 0.25);
+    color: #cea0ff;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.homeHistoryBtn:hover {
+    background: rgba(123, 95, 255, 0.22);
+    color: #fff;
+    box-shadow: 0 0 14px rgba(123, 95, 255, 0.2);
+}
+
 /* ── MAIN LAYOUT ── */
 .homeMain {
     flex: 1;

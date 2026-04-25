@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../contexts/authContext';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
@@ -14,6 +14,15 @@ export default function Authentication() {
   const [message, setmessages] = React.useState();
   const [formState, setFormState] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const [searchParams] = useSearchParams();
+  // Initialise to Sign Up tab when ?mode=register is in the URL
+  React.useEffect(() => {
+    if (searchParams.get('mode') === 'register') {
+      setFormState(1);
+    } else {
+      setFormState(0);
+    }
+  }, [searchParams]);
 
   const { handleRegister, handleLogin } = React.useContext(AuthContext);
   const router = useNavigate();
@@ -23,27 +32,13 @@ export default function Authentication() {
     try {
       if (formState === 0) {
         let result = await handleLogin(username, password);
-        router('/');
+        router('/home');
 
       }
       if (formState === 1) {
-
-        let result = await handleRegister(name, username, password);
-        console.log(result);
-        setname("");
-        setUsername("");
-        setpassword("");
-        seterror("");
-        setFormState(0);
-        setmessages(result);
-        setOpen(true);
-
-
-        setTimeout(() => {
-          setFormState(0);
-          setOpen(false);
-        }, 1500);
-
+        await handleRegister(name, username, password);
+        // auto-login to store the JWT token, then navigate to /home
+        await handleLogin(username, password);
       }
     }
     catch (error) {
@@ -63,7 +58,7 @@ export default function Authentication() {
         </div>
         <div className='navList'>
           <Link to='/' className='navLink'>Home</Link>
-          <Link to='/' className='navLink'>Join as Guest</Link>
+          <Link to='/guest' className='navLink'>Join as Guest</Link>
         </div>
       </nav>
 
@@ -76,7 +71,7 @@ export default function Authentication() {
             <span className='badgeDot'></span>
             Secure · Encrypted · Instant
           </div>
-          <h1 className='authTitle'>c
+          <h1 className='authTitle'>
             Welcome<br /><span className='heroAccent'>back.</span>
           </h1>
           <p className='authSub'>
@@ -91,10 +86,6 @@ export default function Authentication() {
             <div className='authFeatureItem'>
               <span className='featureDot'></span>
               4K HD video quality
-            </div>
-            <div className='authFeatureItem'>
-              <span className='featureDot'></span>
-              AI-powered meeting notes
             </div>
           </div>
         </div>
@@ -162,7 +153,11 @@ export default function Authentication() {
                 <>
                   <p className='authSwitch'>
                     Don't have an account?{' '}
-                    <Link to='/register' className='authSwitchLink'>Register</Link>
+                    <span
+                      className='authSwitchLink'
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setFormState(1)}
+                    >Register</span>
                   </p>
                 </>
               )}
