@@ -18,7 +18,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Badge from '@mui/material/Badge';
 import server from '../environment.js';
 
-const server_url = `${server}`;
+const server_url = process.env.REACT_APP_API_URL;
 
 var connections = {}; //in memo to store peers
 

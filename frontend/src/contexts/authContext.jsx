@@ -6,7 +6,7 @@ import server from '../environment.js';
 export const AuthContext = createContext({});
 
 const client = axios.create({
-    baseURL: `${server}/api/v1/user`
+    baseURL: `${process.env.REACT_APP_API_URL}/api/v1/user`
 
 })
 
