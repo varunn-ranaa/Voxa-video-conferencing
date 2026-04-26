@@ -2,7 +2,7 @@
 
 A real-time video conferencing web app built with WebRTC, enabling peer-to-peer audio/video communication directly in the browser — no plugin required.
 
-**Live Demo:** (https://voxa-video-conferencing.onrender.com)
+[Live Demo](https://voxa-video-conferencing.onrender.com)
 
 ---
 
