@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import Badge from '@mui/material/Badge';
 
-const server_url = "http://localhost:8080";
+const server_url = `${process.env.VOXA_API_URL}`;
 
 var connections = {}; //in memo to store peers
 
