@@ -16,7 +16,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import Badge from '@mui/material/Badge';
-import server from '../environment.js';
+
 
 const server_url = process.env.REACT_APP_API_URL;
 
