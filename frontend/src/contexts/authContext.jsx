@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext({});
 
 const client = axios.create({
-    baseURL: "http://localhost:8080/api/v1/user"
+    baseURL: `${process.env.VOXA_API_URL}/api/v1/user`
 
 })
 
