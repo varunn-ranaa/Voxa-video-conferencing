@@ -1,11 +1,12 @@
 import { createContext, use, useState } from "react";
 import axios, { HttpStatusCode } from "axios";
 import { useNavigate } from "react-router-dom";
+import server from '../environment.js';
 
 export const AuthContext = createContext({});
 
 const client = axios.create({
-    baseURL: `${process.env.VOXA_API_URL}/api/v1/user`
+    baseURL: `${server}/api/v1/user`
 
 })
 
